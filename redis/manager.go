@@ -37,8 +37,6 @@ func (m *LockManager) TryLock(ctx context.Context) error {
 		}
 	}
 
-	fmt.Println(m.value)
-
 	ret, err := lockScript.Run(ctx, m.client, []string{m.name, m.value}, m.lockTimeout.Milliseconds()).Result()
 	if err != nil {
 		return fmt.Errorf("try lock failed: %w", err)
