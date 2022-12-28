@@ -22,11 +22,11 @@ func (Provider) Aggregates() []infra.Provider {
 				// add your jobs here
 			},
 			scheduler.SetLockManagerOption(func(resolver infra.Resolver) scheduler.LockManagerBuilder {
-                // get redis instance
+				// get redis instance
 				redisClient := resolver.MustGet(&redis.Client{}).(*redis.Client)
 				return func(name string) scheduler.LockManager {
 					// create redis lock
-                    return redisLock.New(redisClient, name, 10*time.Minute)
+					return redisLock.New(redisClient, name, 10*time.Minute)
 				}
 			}),
 		),
